@@ -1,0 +1,17 @@
+<clickhouse>
+    <profiles>
+        <readonly>
+            <readonly>1</readonly>
+        </readonly>
+    </profiles>
+
+    <users>
+        <analyst>
+            <password></password>
+            <profile>readonly</profile>
+            <networks>
+                <ip>::/0</ip>
+            </networks>
+        </analyst>
+    </users>
+</clickhouse>

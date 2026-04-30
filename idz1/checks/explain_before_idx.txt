@@ -1,0 +1,61 @@
+                                             QUERY PLAN                                             
+----------------------------------------------------------------------------------------------------
+ Seq Scan on customers  (cost=0.00..5.50 rows=1 width=54) (actual time=0.011..0.020 rows=1 loops=1)
+   Filter: (email = 'client42@example.com'::text)
+   Rows Removed by Filter: 199
+ Planning Time: 0.332 ms
+ Execution Time: 0.052 ms
+(5 rows)
+
+                                             QUERY PLAN                                             
+----------------------------------------------------------------------------------------------------
+ Seq Scan on customers  (cost=0.00..5.50 rows=2 width=54) (actual time=0.034..0.080 rows=2 loops=1)
+   Filter: (name ~~* '%42%'::text)
+   Rows Removed by Filter: 198
+ Planning Time: 0.101 ms
+ Execution Time: 0.086 ms
+(5 rows)
+
+                                                                     QUERY PLAN                                                                      
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+ Nested Loop  (cost=13.28..45.05 rows=2 width=132) (actual time=0.100..0.125 rows=2 loops=1)
+   ->  Hash Join  (cost=12.85..18.61 rows=1 width=91) (actual time=0.077..0.099 rows=1 loops=1)
+         Hash Cond: (c.customer_id = o.customer_id)
+         ->  Seq Scan on customers c  (cost=0.00..5.00 rows=200 width=41) (actual time=0.003..0.013 rows=200 loops=1)
+         ->  Hash  (cost=12.84..12.84 rows=1 width=58) (actual time=0.056..0.056 rows=1 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 9kB
+               ->  Hash Join  (cost=8.30..12.84 rows=1 width=58) (actual time=0.032..0.054 rows=1 loops=1)
+                     Hash Cond: (a.address_id = o.address_id)
+                     ->  Seq Scan on addresses a  (cost=0.00..4.00 rows=200 width=43) (actual time=0.003..0.013 rows=200 loops=1)
+                     ->  Hash  (cost=8.29..8.29 rows=1 width=23) (actual time=0.019..0.019 rows=1 loops=1)
+                           Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                           ->  Index Scan using orders_pkey on orders o  (cost=0.28..8.29 rows=1 width=23) (actual time=0.013..0.013 rows=1 loops=1)
+                                 Index Cond: (order_id = 1001)
+   ->  Nested Loop  (cost=0.43..26.42 rows=2 width=45) (actual time=0.022..0.024 rows=2 loops=1)
+         ->  Index Scan using order_items_pkey on order_items oi  (cost=0.28..10.07 rows=2 width=17) (actual time=0.014..0.014 rows=2 loops=1)
+               Index Cond: (order_id = 1001)
+         ->  Index Scan using products_pkey on products p  (cost=0.15..8.17 rows=1 width=36) (actual time=0.004..0.004 rows=1 loops=2)
+               Index Cond: (product_id = oi.product_id)
+ Planning Time: 0.660 ms
+ Execution Time: 0.182 ms
+(20 rows)
+
+                                                               QUERY PLAN                                                               
+----------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=132.19..132.21 rows=10 width=72) (actual time=1.140..1.142 rows=10 loops=1)
+   ->  Sort  (cost=132.19..134.21 rows=810 width=72) (actual time=1.139..1.140 rows=10 loops=1)
+         Sort Key: (sum(oi.quantity)) DESC
+         Sort Method: quicksort  Memory: 25kB
+         ->  HashAggregate  (cost=104.56..114.68 rows=810 width=72) (actual time=1.123..1.128 rows=11 loops=1)
+               Group Key: p.name
+               Batches: 1  Memory Usage: 49kB
+               ->  Hash Join  (cost=28.23..74.56 rows=2400 width=41) (actual time=0.012..0.477 rows=2402 loops=1)
+                     Hash Cond: (oi.product_id = p.product_id)
+                     ->  Seq Scan on order_items oi  (cost=0.00..40.00 rows=2400 width=13) (actual time=0.002..0.121 rows=2402 loops=1)
+                     ->  Hash  (cost=18.10..18.10 rows=810 width=36) (actual time=0.006..0.006 rows=11 loops=1)
+                           Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                           ->  Seq Scan on products p  (cost=0.00..18.10 rows=810 width=36) (actual time=0.002..0.003 rows=11 loops=1)
+ Planning Time: 0.113 ms
+ Execution Time: 1.177 ms
+(15 rows)
+

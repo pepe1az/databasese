@@ -1,0 +1,40 @@
+DROP MATERIALIZED VIEW
+SELECT 68
+CREATE INDEX
+                                                                  QUERY PLAN                                                                  
+----------------------------------------------------------------------------------------------------------------------------------------------
+ GroupAggregate  (cost=278.63..368.71 rows=2402 width=112) (actual time=2.575..3.270 rows=68 loops=1)
+   Group Key: (date_trunc('month'::text, (o.order_date)::timestamp with time zone)), p.name, c.name
+   ->  Sort  (cost=278.63..284.64 rows=2402 width=81) (actual time=2.555..2.649 rows=2402 loops=1)
+         Sort Key: (date_trunc('month'::text, (o.order_date)::timestamp with time zone)), p.name, c.name
+         Sort Method: quicksort  Memory: 326kB
+         ->  Hash Join  (cost=70.34..143.76 rows=2402 width=81) (actual time=0.184..1.526 rows=2402 loops=1)
+               Hash Cond: (p.category_id = c.category_id)
+               ->  Hash Join  (cost=31.77..86.85 rows=2402 width=49) (actual time=0.172..0.947 rows=2402 loops=1)
+                     Hash Cond: (oi.product_id = p.product_id)
+                     ->  Hash Join  (cost=30.52..76.87 rows=2402 width=17) (actual time=0.165..0.652 rows=2402 loops=1)
+                           Hash Cond: (oi.order_id = o.order_id)
+                           ->  Seq Scan on order_items oi  (cost=0.00..40.02 rows=2402 width=17) (actual time=0.002..0.121 rows=2402 loops=1)
+                           ->  Hash  (cost=18.01..18.01 rows=1001 width=8) (actual time=0.161..0.161 rows=1001 loops=1)
+                                 Buckets: 1024  Batches: 1  Memory Usage: 48kB
+                                 ->  Seq Scan on orders o  (cost=0.00..18.01 rows=1001 width=8) (actual time=0.003..0.079 rows=1001 loops=1)
+                     ->  Hash  (cost=1.11..1.11 rows=11 width=40) (actual time=0.005..0.005 rows=11 loops=1)
+                           Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                           ->  Seq Scan on products p  (cost=0.00..1.11 rows=11 width=40) (actual time=0.002..0.003 rows=11 loops=1)
+               ->  Hash  (cost=22.70..22.70 rows=1270 width=36) (actual time=0.006..0.006 rows=4 loops=1)
+                     Buckets: 2048  Batches: 1  Memory Usage: 17kB
+                     ->  Seq Scan on categories c  (cost=0.00..22.70 rows=1270 width=36) (actual time=0.003..0.004 rows=4 loops=1)
+ Planning Time: 0.298 ms
+ Execution Time: 3.323 ms
+(23 rows)
+
+                                                     QUERY PLAN                                                     
+--------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=3.75..3.92 rows=68 width=112) (actual time=0.040..0.043 rows=68 loops=1)
+   Sort Key: month, product_name
+   Sort Method: quicksort  Memory: 31kB
+   ->  Seq Scan on mv_monthly_sales  (cost=0.00..1.68 rows=68 width=112) (actual time=0.003..0.006 rows=68 loops=1)
+ Planning Time: 0.086 ms
+ Execution Time: 0.050 ms
+(6 rows)
+

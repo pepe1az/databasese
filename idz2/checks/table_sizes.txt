@@ -1,0 +1,3 @@
+orders_flat	45.52 MiB	1000000
+orders_ttl	47.41 KiB	1000
+monthly_sales	16.64 KiB	325

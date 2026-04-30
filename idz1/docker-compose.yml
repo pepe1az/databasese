@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: idz1-postgres
+    environment:
+      POSTGRES_DB: idz1
+      POSTGRES_USER: idz1
+      POSTGRES_PASSWORD: idz1
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

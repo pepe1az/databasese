@@ -1,0 +1,18 @@
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: idz2-clickhouse
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      - ./config/users.xml:/etc/clickhouse-server/users.d/analyst.xml:ro
+      - ./config/config.d/listen.xml:/etc/clickhouse-server/config.d/listen.xml:ro
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+
+volumes:
+  clickhouse_data:

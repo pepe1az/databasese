@@ -1,0 +1,24 @@
+ALTER TABLE
+ALTER TABLE
+UPDATE 1001
+                                                     QUERY PLAN                                                      
+---------------------------------------------------------------------------------------------------------------------
+ Index Scan using orders_pkey on orders  (cost=0.28..8.30 rows=1 width=53) (actual time=0.014..0.015 rows=1 loops=1)
+   Index Cond: (order_id = 1001)
+ Planning Time: 0.084 ms
+ Execution Time: 0.033 ms
+(4 rows)
+
+                                                            QUERY PLAN                                                             
+-----------------------------------------------------------------------------------------------------------------------------------
+ Hash Join  (cost=8.31..13.83 rows=1 width=37) (actual time=0.016..0.039 rows=1 loops=1)
+   Hash Cond: (c.customer_id = o.customer_id)
+   ->  Seq Scan on customers c  (cost=0.00..5.00 rows=200 width=20) (actual time=0.003..0.014 rows=200 loops=1)
+   ->  Hash  (cost=8.30..8.30 rows=1 width=25) (actual time=0.007..0.007 rows=1 loops=1)
+         Buckets: 1024  Batches: 1  Memory Usage: 9kB
+         ->  Index Scan using orders_pkey on orders o  (cost=0.28..8.30 rows=1 width=25) (actual time=0.003..0.004 rows=1 loops=1)
+               Index Cond: (order_id = 1001)
+ Planning Time: 0.164 ms
+ Execution Time: 0.053 ms
+(9 rows)
+

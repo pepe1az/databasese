@@ -1,0 +1,10 @@
+Python Book	Books	9151988288.98
+Treadmill	Sport	9120059708.6
+Headphones	Electronics	9108286098.86
+Vacuum Cleaner	Home	9103522437.67
+Hoodie	Clothes	9102993978.68
+Linux Book	Books	9077295058.54
+Yoga Mat	Sport	9061089584.36
+Smartphone	Electronics	9059262700.14
+Laptop	Electronics	9058945905.64
+T-Shirt	Clothes	9034211307.06

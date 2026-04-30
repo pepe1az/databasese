@@ -1,0 +1,10 @@
+SET
+                                                           QUERY PLAN                                                           
+--------------------------------------------------------------------------------------------------------------------------------
+ Index Scan using idx_customers_email on customers  (cost=0.14..8.16 rows=1 width=54) (actual time=0.011..0.011 rows=1 loops=1)
+   Index Cond: (email = 'client42@example.com'::text)
+ Planning Time: 0.279 ms
+ Execution Time: 0.039 ms
+(4 rows)
+
+RESET

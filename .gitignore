@@ -1,0 +1,23 @@
+# Python / cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment files
+.env
+*.env
+
+# Logs / temp
+*.log
+*.tmp
+*.swp
+.DS_Store
+
+# Data files
+*.csv

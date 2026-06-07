@@ -1,0 +1,103 @@
+services:
+  keeper1:
+    image: clickhouse/clickhouse-server:24.8
+    container_name: keeper1
+    hostname: keeper1
+    command: clickhouse-keeper --config-file=/etc/clickhouse-keeper/keeper.xml
+    volumes:
+      - ./config/keeper/keeper1.xml:/etc/clickhouse-keeper/keeper.xml:ro
+    ports:
+      - "9181:9181"
+    networks:
+      - ch_net
+
+  keeper2:
+    image: clickhouse/clickhouse-server:24.8
+    container_name: keeper2
+    hostname: keeper2
+    command: clickhouse-keeper --config-file=/etc/clickhouse-keeper/keeper.xml
+    volumes:
+      - ./config/keeper/keeper2.xml:/etc/clickhouse-keeper/keeper.xml:ro
+    ports:
+      - "9182:9181"
+    networks:
+      - ch_net
+
+  keeper3:
+    image: clickhouse/clickhouse-server:24.8
+    container_name: keeper3
+    hostname: keeper3
+    command: clickhouse-keeper --config-file=/etc/clickhouse-keeper/keeper.xml
+    volumes:
+      - ./config/keeper/keeper3.xml:/etc/clickhouse-keeper/keeper.xml:ro
+    ports:
+      - "9183:9181"
+    networks:
+      - ch_net
+
+  ch-s1-r1:
+    image: clickhouse/clickhouse-server:24.8
+    container_name: ch-s1-r1
+    hostname: ch-s1-r1
+    depends_on:
+      - keeper1
+      - keeper2
+      - keeper3
+    volumes:
+      - ./config/clickhouse/cluster.xml:/etc/clickhouse-server/config.d/cluster.xml:ro
+      - ./config/clickhouse/s1r1_macros.xml:/etc/clickhouse-server/config.d/macros.xml:ro
+      - ./config/clickhouse/users.xml:/etc/clickhouse-server/users.d/users.xml:ro
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    networks:
+      - ch_net
+
+  ch-s1-r2:
+    image: clickhouse/clickhouse-server:24.8
+    container_name: ch-s1-r2
+    hostname: ch-s1-r2
+    depends_on:
+      - keeper1
+      - keeper2
+      - keeper3
+    volumes:
+      - ./config/clickhouse/cluster.xml:/etc/clickhouse-server/config.d/cluster.xml:ro
+      - ./config/clickhouse/s1r2_macros.xml:/etc/clickhouse-server/config.d/macros.xml:ro
+      - ./config/clickhouse/users.xml:/etc/clickhouse-server/users.d/users.xml:ro
+    networks:
+      - ch_net
+
+  ch-s2-r1:
+    image: clickhouse/clickhouse-server:24.8
+    container_name: ch-s2-r1
+    hostname: ch-s2-r1
+    depends_on:
+      - keeper1
+      - keeper2
+      - keeper3
+    volumes:
+      - ./config/clickhouse/cluster.xml:/etc/clickhouse-server/config.d/cluster.xml:ro
+      - ./config/clickhouse/s2r1_macros.xml:/etc/clickhouse-server/config.d/macros.xml:ro
+      - ./config/clickhouse/users.xml:/etc/clickhouse-server/users.d/users.xml:ro
+    networks:
+      - ch_net
+
+  ch-s2-r2:
+    image: clickhouse/clickhouse-server:24.8
+    container_name: ch-s2-r2
+    hostname: ch-s2-r2
+    depends_on:
+      - keeper1
+      - keeper2
+      - keeper3
+    volumes:
+      - ./config/clickhouse/cluster.xml:/etc/clickhouse-server/config.d/cluster.xml:ro
+      - ./config/clickhouse/s2r2_macros.xml:/etc/clickhouse-server/config.d/macros.xml:ro
+      - ./config/clickhouse/users.xml:/etc/clickhouse-server/users.d/users.xml:ro
+    networks:
+      - ch_net
+
+networks:
+  ch_net:
+    driver: bridge

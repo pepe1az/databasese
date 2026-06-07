@@ -1,0 +1,26 @@
+# JSON attribute search
+
+## Query
+SELECT id, title, tags
+FROM products
+WHERE MATCH('phone') AND tags.color = 'black'
+LIMIT 10
+
+## Result
++-------+----------------------------------------------+----------------------------------------------------------------------------------+
+| id    | title                                        | tags                                                                             |
++-------+----------------------------------------------+----------------------------------------------------------------------------------+
+| 80745 | DemoBrand Black Camera Mouse Phone           | {"color":"black","keywords":["camera","mouse","phone"],"wireless":false,"gaming" |
+| 3293  | JBL Black Gaming Mouse Phone                 | {"color":"black","keywords":["gaming","mouse","phone"],"wireless":false,"gaming" |
+| 3336  | Dell Black Smart Watch Phone Camera          | {"color":"black","keywords":["smart watch","phone","camera","charger"],"wireless |
+| 2541  | Anker Black Phone Charger Mouse              | {"color":"black","keywords":["phone","charger","mouse","monitor","smart watch"," |
+| 83979 | Anker Black Keyboard Gaming Phone            | {"color":"black","keywords":["keyboard","gaming","phone"],"wireless":false,"gami |
+| 87035 | JBL Black Usb Type C Fast Charging Phone     | {"color":"black","keywords":["usb type c","fast charging","phone"],"wireless":fa |
+| 49073 | HyperX Black Phone Charger Usb Type C        | {"color":"black","keywords":["phone","charger","usb type c","headphones","camera |
+| 91749 | Anker Black Laptop Camera Phone              | {"color":"black","keywords":["laptop","camera","phone","charger"],"wireless":fal |
+| 11109 | HyperX Black Fast Charging Phone Home Office | {"color":"black","keywords":["fast charging","phone","home office","keyboard","b |
+| 11487 | MSI Black Portable Speaker Monitor Phone     | {"color":"black","keywords":["portable speaker","monitor","phone"],"wireless":fa |
++-------+----------------------------------------------+----------------------------------------------------------------------------------+
+
+## Time
+8.318 ms

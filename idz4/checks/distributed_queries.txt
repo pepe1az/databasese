@@ -1,0 +1,41 @@
+===== distributed queries =====
+Mon Jun  8 00:48:15 MSK 2026
+
+   ┌─cluster─────┬─shard_num─┬─shard_weight─┬─internal_replication─┬─replica_num─┬─host_name─┬─host_address─┬─port─┬─is_local─┬─user────┬─default_database─┬─errors_count─┬─slowdowns_count─┬─estimated_recovery_time─┬─database_shard_name─┬─database_replica_name─┬─is_active─┬─replication_lag─┬─recovery_time─┐
+1. │ cluster_2x2 │         1 │            1 │                    0 │           1 │ ch-s1-r1  │ 172.19.0.6   │ 9000 │        1 │ default │                  │            0 │               0 │                       0 │                     │                       │      ᴺᵁᴸᴸ │            ᴺᵁᴸᴸ │          ᴺᵁᴸᴸ │
+2. │ cluster_2x2 │         1 │            1 │                    0 │           2 │ ch-s1-r2  │ 172.19.0.7   │ 9000 │        0 │ default │                  │            0 │               0 │                       0 │                     │                       │      ᴺᵁᴸᴸ │            ᴺᵁᴸᴸ │          ᴺᵁᴸᴸ │
+3. │ cluster_2x2 │         2 │            1 │                    0 │           1 │ ch-s2-r1  │ 172.19.0.8   │ 9000 │        0 │ default │                  │            0 │               0 │                       0 │                     │                       │      ᴺᵁᴸᴸ │            ᴺᵁᴸᴸ │          ᴺᵁᴸᴸ │
+4. │ cluster_2x2 │         2 │            1 │                    0 │           2 │ ch-s2-r2  │ 172.19.0.5   │ 9000 │        0 │ default │                  │            0 │               0 │                       0 │                     │                       │      ᴺᵁᴸᴸ │            ᴺᵁᴸᴸ │          ᴺᵁᴸᴸ │
+   └─────────────┴───────────┴──────────────┴──────────────────────┴─────────────┴───────────┴──────────────┴──────┴──────────┴─────────┴──────────────────┴──────────────┴─────────────────┴─────────────────────────┴─────────────────────┴───────────────────────┴───────────┴─────────────────┴───────────────┘
+2000000
+ch-s1-r1	1000608
+ch-s1-r1	1000608	250152
+ch-s2-r1	999392	249848
+ch-s2-r1	4
+329169	4
+328394	4
+184732	4
+481527	4
+400831	4
+440842	4
+315883	4
+446701	4
+317168	4
+164605	4
+/page/49	2000
+/page/254	2000
+/page/970	2000
+/page/51	2000
+/page/561	2000
+/page/806	2000
+/page/827	2000
+/page/720	2000
+/page/983	2000
+/page/270	2000
+
+===== GLOBAL JOIN workaround =====
+Mon Jun  8 00:49:09 MSK 2026
+
+premium	666668
+free	666668
+enterprise	666664

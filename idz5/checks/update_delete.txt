@@ -1,0 +1,75 @@
+# UPDATE / DELETE / REPLACE
+
+## Query
+SELECT id, title, price, rating FROM products WHERE id = 1
+
+## Result
++----+---------------------------------------------+--------+--------+
+| id | title                                       | price  | rating |
++----+---------------------------------------------+--------+--------+
+| 1  | Wireless Bluetooth Headphones Black Edition | 7499.0 | 4.7    |
++----+---------------------------------------------+--------+--------+
+Time: 1.177 ms
+
+## Query
+UPDATE products SET price = 9999.99, rating = 4.9 WHERE id = 1
+
+## Result
+OK
+Time: 0.650 ms
+
+## Query
+SELECT id, title, price, rating FROM products WHERE id = 1
+
+## Result
++----+---------------------------------------------+-------------+--------+
+| id | title                                       | price       | rating |
++----+---------------------------------------------+-------------+--------+
+| 1  | Wireless Bluetooth Headphones Black Edition | 9999.990234 | 4.9    |
++----+---------------------------------------------+-------------+--------+
+Time: 0.598 ms
+
+## Query
+SELECT id, title FROM products WHERE id = 2
+
+## Result
++----+-------------------------------------+
+| id | title                               |
++----+-------------------------------------+
+| 2  | Premium Noise Cancelling Headphones |
++----+-------------------------------------+
+Time: 0.566 ms
+
+## Query
+DELETE FROM products WHERE id = 2
+
+## Result
+OK
+Time: 0.411 ms
+
+## Query
+SELECT id, title FROM products WHERE id = 2
+
+## Result
+(empty result)
+Time: 0.485 ms
+
+## Query
+REPLACE INTO products (id, title, description, category, brand, price, rating, reviews_count, in_stock, tags, created_at)
+VALUES (2, 'Replaced Noise Cancelling Headphones', 'Replaced document for UPDATE DELETE REPLACE demonstration', 'audio', 'DemoBrand', 12999.00, 4.8, 777, 1, '{"color":"black","wireless":true,"demo":"replace"}', 1710000000)
+
+## Result
+OK
+Time: 2.486 ms
+
+## Query
+SELECT id, title, price, rating, tags FROM products WHERE id = 2
+
+## Result
++----+--------------------------------------+---------+--------+----------------------------------------------------+
+| id | title                                | price   | rating | tags                                               |
++----+--------------------------------------+---------+--------+----------------------------------------------------+
+| 2  | Replaced Noise Cancelling Headphones | 12999.0 | 4.8    | {"color":"black","wireless":true,"demo":"replace"} |
++----+--------------------------------------+---------+--------+----------------------------------------------------+
+Time: 0.861 ms
+

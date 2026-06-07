@@ -1,0 +1,28 @@
+===== Experiment C: stop replica 2 =====
+
+===== Insert data into replica 1 =====
+
+===== Start replica 2 =====
+
+===== Check conflict_test rows on all replicas =====
+--- clickhouse1 ---
+20000
+--- clickhouse2 ---
+20000
+--- clickhouse3 ---
+20000
+
+===== Replica 2 status =====
+Row 1:
+──────
+database:          default
+table:             events
+replica_name:      replica2
+is_leader:         1
+total_replicas:    3
+active_replicas:   3
+queue_size:        0
+inserts_in_queue:  0
+merges_in_queue:   0
+log_pointer:       5
+last_queue_update: 2026-06-07 12:59:12

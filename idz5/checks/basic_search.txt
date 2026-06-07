@@ -1,0 +1,27 @@
+# Basic search
+
+## Query
+SELECT id, title, WEIGHT() AS w
+FROM products
+WHERE MATCH('wireless bluetooth headphones')
+ORDER BY w DESC
+LIMIT 10
+
+## Result
++-------+---------------------------------------------+------+
+| id    | title                                       | w    |
++-------+---------------------------------------------+------+
+| 80324 | Dell Silver Wireless Bluetooth Headphones   | 6544 |
+| 81084 | HyperX Silver Wireless Bluetooth Headphones | 6544 |
+| 82413 | Apple White Wireless Bluetooth Headphones   | 6544 |
+| 85238 | Lenovo Silver Wireless Bluetooth Headphones | 6544 |
+| 92290 | Acer Red Wireless Bluetooth Headphones      | 6544 |
+| 93789 | Xiaomi White Wireless Bluetooth Headphones  | 6544 |
+| 96498 | Dell Black Wireless Bluetooth Headphones    | 6544 |
+| 75037 | JBL Gray Wireless Bluetooth Headphones      | 6544 |
+| 77369 | Sony Green Wireless Bluetooth Headphones    | 6544 |
+| 76223 | Anker Silver Wireless Bluetooth Headphones  | 6544 |
++-------+---------------------------------------------+------+
+
+## Time
+6.936 ms

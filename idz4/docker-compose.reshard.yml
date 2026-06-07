@@ -1,0 +1,20 @@
+services:
+  ch-s3-r1:
+    image: clickhouse/clickhouse-server:24.8
+    container_name: ch-s3-r1
+    hostname: ch-s3-r1
+    depends_on: [keeper1, keeper2, keeper3]
+    volumes:
+      - ./config/clickhouse/cluster.xml:/etc/clickhouse-server/config.d/cluster.xml:ro
+      - ./config/clickhouse/s3r1_macros.xml:/etc/clickhouse-server/config.d/macros.xml:ro
+    networks: [ch_net]
+
+  ch-s3-r2:
+    image: clickhouse/clickhouse-server:24.8
+    container_name: ch-s3-r2
+    hostname: ch-s3-r2
+    depends_on: [keeper1, keeper2, keeper3]
+    volumes:
+      - ./config/clickhouse/cluster.xml:/etc/clickhouse-server/config.d/cluster.xml:ro
+      - ./config/clickhouse/s3r2_macros.xml:/etc/clickhouse-server/config.d/macros.xml:ro
+    networks: [ch_net]

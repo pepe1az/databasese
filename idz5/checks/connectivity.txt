@@ -1,0 +1,15 @@
+# Connectivity check
+
+## MySQL protocol
+Command: mysql -h 127.0.0.1 -P 9306 -e 'SHOW TABLES;'
++----------+------+
+| Table    | Type |
++----------+------+
+| products | rt   |
++----------+------+
+Time: 0.706 ms
+
+## HTTP API
+Command: curl -s http://localhost:9308/sql -d "query=SHOW TABLES"
+{"error":"only SELECT queries are supported"}
+Time: 19.581 ms

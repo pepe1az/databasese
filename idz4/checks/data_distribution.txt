@@ -1,0 +1,36 @@
+===== data distribution check =====
+Mon Jun  8 00:42:47 MSK 2026
+
+===== Distributed total count =====
+2000000
+
+===== Local counts on each replica =====
+--- ch-s1-r1 ---
+ch-s1-r1	1000608
+--- ch-s1-r2 ---
+ch-s1-r2	1000608
+--- ch-s2-r1 ---
+ch-s2-r1	999392
+--- ch-s2-r2 ---
+ch-s2-r2	999392
+
+===== Unique users and rows on each replica =====
+--- ch-s1-r1 ---
+ch-s1-r1	250726	1000608
+--- ch-s1-r2 ---
+ch-s1-r2	250726	1000608
+--- ch-s2-r1 ---
+ch-s2-r1	249779	999392
+--- ch-s2-r2 ---
+ch-s2-r2	249779	999392
+
+===== Example: one user_id must be located on one shard =====
+Check user_id = 12345 on all replicas:
+--- ch-s1-r1 ---
+ch-s1-r1	0
+--- ch-s1-r2 ---
+ch-s1-r2	0
+--- ch-s2-r1 ---
+ch-s2-r1	4
+--- ch-s2-r2 ---
+ch-s2-r2	4

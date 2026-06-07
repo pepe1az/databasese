@@ -1,0 +1,42 @@
+===== system.clusters: cluster_2x2 =====
+Mon Jun  8 00:41:28 MSK 2026
+
+Row 1:
+──────
+cluster:      cluster_2x2
+shard_num:    1
+replica_num:  1
+host_name:    ch-s1-r1
+host_address: 172.19.0.6
+port:         9000
+is_local:     1
+
+Row 2:
+──────
+cluster:      cluster_2x2
+shard_num:    1
+replica_num:  2
+host_name:    ch-s1-r2
+host_address: 172.19.0.7
+port:         9000
+is_local:     0
+
+Row 3:
+──────
+cluster:      cluster_2x2
+shard_num:    2
+replica_num:  1
+host_name:    ch-s2-r1
+host_address: 172.19.0.8
+port:         9000
+is_local:     0
+
+Row 4:
+──────
+cluster:      cluster_2x2
+shard_num:    2
+replica_num:  2
+host_name:    ch-s2-r2
+host_address: 172.19.0.5
+port:         9000
+is_local:     0

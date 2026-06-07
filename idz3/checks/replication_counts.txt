@@ -1,0 +1,20 @@
+===== replication counts =====
+Sun Jun  7 15:09:31 MSK 2026
+
+===== clickhouse1 count =====
+clickhouse1	100000
+
+===== clickhouse2 count =====
+clickhouse2	100000
+
+===== clickhouse3 count =====
+clickhouse3	100000
+
+===== clickhouse1 aggregate check =====
+100000	0	99999	100000
+
+===== clickhouse2 aggregate check =====
+100000	0	99999	100000
+
+===== clickhouse3 aggregate check =====
+100000	0	99999	100000

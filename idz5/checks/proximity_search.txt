@@ -1,0 +1,26 @@
+# Proximity search
+
+## Query
+SELECT id, title, WEIGHT() AS w
+FROM products
+WHERE MATCH('"portable speaker"~3')
+LIMIT 10
+
+## Result
++-------+----------------------------------------------------------+------+
+| id    | title                                                    | w    |
++-------+----------------------------------------------------------+------+
+| 80019 | Logitech Gray Fast Charging Portable Speaker Home Office | 4554 |
+| 80025 | HyperX Gray Portable Speaker Monitor Noise Cancelling    | 4554 |
+| 80029 | HyperX White Portable Speaker Keyboard                   | 4554 |
+| 80035 | DemoBrand Blue Portable Speaker Headphones Bluetooth     | 4554 |
+| 80042 | Philips Silver Mouse Portable Speaker Monitor            | 4554 |
+| 80051 | Asus Black Portable Speaker Usb Type C Smart Watch       | 4554 |
+| 80060 | Xiaomi White Portable Speaker Charger Fast Charging      | 4554 |
+| 80068 | Dell Blue Portable Speaker Smart Watch Bluetooth         | 4554 |
+| 80072 | Apple White Noise Cancelling Portable Speaker Mouse      | 4554 |
+| 80073 | Dell Black Headphones Portable Speaker Wireless          | 4554 |
++-------+----------------------------------------------------------+------+
+
+## Time
+5.348 ms

@@ -1,0 +1,29 @@
+# Facet aggregation by category
+
+## Query
+SELECT category, COUNT(*) AS cnt, AVG(price) AS avg_price
+FROM products
+WHERE MATCH('gaming')
+GROUP BY category
+ORDER BY cnt DESC
+
+## Result
++-------------+-------+----------------+
+| category    | cnt   | avg_price      |
++-------------+-------+----------------+
+| laptops     | 12102 | 75467.72709357 |
+| audio       | 12082 | 75038.89728106 |
+| phones      | 11489 | 75330.07949189 |
+| gaming      | 8541  | 75051.19508452 |
+| accessories | 8335  | 75428.74592987 |
+| books       | 6847  | 75522.1435731  |
+| kitchen     | 6804  | 75314.14041462 |
+| sports      | 6781  | 75747.15857523 |
+| office      | 6767  | 76219.2838889  |
+| home        | 6763  | 76051.60093161 |
+| wearables   | 6755  | 75282.65331105 |
+| camera      | 6730  | 75529.8188598  |
++-------------+-------+----------------+
+
+## Time
+7.704 ms

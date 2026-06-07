@@ -1,0 +1,25 @@
+===== Experiment A: stop replica 3 =====
+
+===== Insert new data into replica 1 =====
+
+===== Check replica 2 received data =====
+failover_a	10000
+
+===== Start replica 3 =====
+
+===== Replica 3 status after recovery =====
+Row 1:
+──────
+database:          default
+table:             events
+replica_name:      replica3
+is_leader:         1
+total_replicas:    3
+active_replicas:   3
+queue_size:        0
+inserts_in_queue:  0
+merges_in_queue:   0
+log_pointer:       2
+last_queue_update: 2026-06-07 12:10:21
+
+===== Replication queue on replica 3 =====

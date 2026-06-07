@@ -1,0 +1,27 @@
+# Filtered search
+
+## Query
+SELECT id, title, price, rating
+FROM products
+WHERE MATCH('laptop') AND price BETWEEN 30000 AND 80000 AND rating >= 4.0
+ORDER BY rating DESC
+LIMIT 10
+
+## Result
++-------+-------------------------------------------------+--------------+--------+
+| id    | title                                           | price        | rating |
++-------+-------------------------------------------------+--------------+--------+
+| 46726 | Apple Red Noise Cancelling Monitor Charger      | 43563.550781 | 5.0    |
+| 46987 | Philips White Home Office Monitor Laptop        | 37820.511719 | 5.0    |
+| 3095  | Dell Red Mouse Laptop Monitor                   | 71605.40625  | 5.0    |
+| 3139  | Xiaomi Blue Home Office Laptop Fast Charging    | 42778.390625 | 5.0    |
+| 3144  | Apple Gray Smart Watch Laptop Bluetooth         | 30893.359375 | 5.0    |
+| 3169  | MSI Black Laptop Portable Speaker Fast Charging | 47285.230469 | 5.0    |
+| 3192  | Apple Black Laptop Mouse Phone                  | 78476.898438 | 5.0    |
+| 2050  | Acer Gray Gaming Fast Charging Laptop           | 78109.539062 | 5.0    |
+| 82201 | Acer White Monitor Camera Laptop                | 51764.269531 | 5.0    |
+| 2452  | Anker Red Usb Type C Fast Charging Gaming       | 31919.449219 | 5.0    |
++-------+-------------------------------------------------+--------------+--------+
+
+## Time
+9.075 ms

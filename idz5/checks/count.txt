@@ -1,0 +1,14 @@
+# Loaded rows count
+
+## Query
+SELECT COUNT(*) AS total FROM products
+
+## Result
++--------+
+| total  |
++--------+
+| 100000 |
++--------+
+
+## Time
+0.452 ms

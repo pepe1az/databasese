@@ -1,0 +1,26 @@
+# Exact phrase search
+
+## Query
+SELECT id, title, WEIGHT() AS w
+FROM products
+WHERE MATCH('"noise cancelling"')
+LIMIT 10
+
+## Result
++-------+-------------------------------------------------------+------+
+| id    | title                                                 | w    |
++-------+-------------------------------------------------------+------+
+| 80003 | MSI Black Wireless Charger Noise Cancelling           | 4575 |
+| 80006 | Sony Red Noise Cancelling Usb Type C                  | 4575 |
+| 80011 | MSI Red Bluetooth Home Office Noise Cancelling        | 4575 |
+| 80018 | Lenovo Black Home Office Noise Cancelling             | 4575 |
+| 80025 | HyperX Gray Portable Speaker Monitor Noise Cancelling | 4575 |
+| 80040 | JBL Silver Noise Cancelling Smart Watch Wireless      | 4575 |
+| 80043 | JBL Red Fast Charging Noise Cancelling Home Office    | 4575 |
+| 80058 | HP Green Noise Cancelling Smart Watch Gaming          | 4575 |
+| 80059 | JBL Silver Home Office Gaming Noise Cancelling        | 4575 |
+| 80062 | Anker Green Charger Noise Cancelling Fast Charging    | 4575 |
++-------+-------------------------------------------------------+------+
+
+## Time
+5.935 ms
